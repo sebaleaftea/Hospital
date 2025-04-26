@@ -2,8 +2,8 @@ package com.example.hospital_vm.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Data;
 import java.util.Date;
 
 @Entity
@@ -33,5 +33,5 @@ public class Paciente {
 
     @Column(nullable=false)
     private String correo;
-    //xdxdxdx
+    //xdxdxdxgit push origin main
 }
