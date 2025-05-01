@@ -36,7 +36,7 @@ public class PacienteController {
         return "Hola Mundo";
     }
     
-    @GetMapping("/listar-pacientes")
+    @GetMapping("/listar")
     public ResponseEntity<List<Paciente>> listar(){
         List<Paciente> pacientes = pacienteService.findAll();
         if(pacientes.isEmpty()){
@@ -54,28 +54,28 @@ public class PacienteController {
     
     
     
-    // @GetMapping("/{id}")
-    // public ResponseEntity<?> getPacientePorId(@PathVariable Integer id){
-    //       Optional<Paciente> paciente = pacienteService.getPacientePorId(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPacientePorId(@PathVariable Integer id){
+           Optional<Paciente> paciente = pacienteService.getPacientePorId(id);
 
-    //       if(paciente.isPresent()){
-    //         //Respuesta exitosa con cabeceras personalizadas
-    //         return ResponseEntity.ok()
-    //                 .header("Correcto","Llamada correcto")
-    //                 .body(paciente.get());
-    //       }else{
-    //         //Respuesta de error con cuerpo personalizado
-    //         Map<String,String> errorBody = new HashMap<>();
-    //         errorBody.put("message","No se encontro un paciente con ese ID: " + id);
-    //         errorBody.put("status", "404");
-    //         errorBody.put("timestamp",LocalDateTime.now().toString());
+           if(paciente.isPresent()){
+             //Respuesta exitosa con cabeceras personalizadas
+             return ResponseEntity.ok()
+                     .header("Correcto","Llamada correcto")
+                     .body(paciente.get());
+           }else{
+             //Respuesta de error con cuerpo personalizado
+             Map<String,String> errorBody = new HashMap<>();
+             errorBody.put("message","No se encontro un paciente con ese ID: " + id);
+             errorBody.put("status", "404");
+             errorBody.put("timestamp",LocalDateTime.now().toString());
 
-    //         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-    //                     .body(errorBody);
-    //       }
+             return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                         .body(errorBody);
+           }
 
-    //       //Se usa <?> para pe
-    // }
+           
+     }
     
     
 
